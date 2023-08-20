@@ -1,5 +1,6 @@
 body {
     background-color: #1E1E1E;
+    color:#A59F9F;
 }
 
   
@@ -65,18 +66,22 @@ button {
 ul {
     display: flex;
     justify-content: space-between;
+    color:#A59F9F;
     
 }
 
 li {
     display: inline-block;
     margin-right: 10px;
+    color:#A59F9F;
   }
 
 .functionskeys {
+    
     width: 44px;
     height: 24px;
 }
 .numerics{
     padding-top: 70px;
+    
 }
