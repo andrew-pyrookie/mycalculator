@@ -50,6 +50,7 @@ button {
 .power {
     display: flex;
     justify-content: space-between;
+    color: #A59F9F;
 }
 
 #poweron {
@@ -79,8 +80,10 @@ li {
     
     width: 44px;
     height: 24px;
+    color: #A59F9F;
 }
 .numerics{
     padding-top: 70px;
+    color: #A59F9F;
     
 }

@@ -1,81 +1,66 @@
+const resultscreen =  document.getElementById("resultScreen");
+const p = resultscreen.querySelector("p");
+const powerOnBtn = document.getElementById("poweron");
+const powerOffBtn = document.getElementById("poweroff");
+const functionkeys = Array.from(document.getElementsByClassName("functionskeys"));
+const numerics = Array.from(document.getElementsByClassName("numerics"));
+
 function oncalculator(){
-    document.getElementById("msg").innerHTML = "Calculator is ON. press OFF to shutdown";
+    document.getElementById("msg").innerHTML = "Calculator is ON. Press OFF";
+    powerOffBtn.disabled = true;
+    powerOnBtn.disabled = false;
     
-    document.addEventListener("click",clearScreen )
-    
+    for (const button of functionkeys){
+        button.disabled = true;
+    }
+
+    for (const num of numerics){
+        num.disabled = true;
+    }
+
     p.style.cursor = "text";
-    p.style.animation = "blink 1s infinite";
-
-    var display = document.getElementById("display");
-
-    display.style.fontStyle = "bold";
-    display.style.color = "black";
+    p.style.animation = "blink infinite";
+    document.addEventListener("click", clearScreen);
 }
 
 function offcalculator(){
-    document.getElementById("msg").innerHTML = "Calculator is OFF. press ON to startup";
-    document.addEventListener("click",restorescreen )
-}
+    document.getElementById("msg").innerHTML = "Calculator is OFF. Press ON";   
+    powerOffBtn.disabled = false;
+    powerOnBtn.disabled = true;
 
-const resultscreen = document.getElementById("resultScreen");
-const p = resultscreen.querySelector("p");
+    for (const button of functionkeys){
+        button.disabled = false;
+    }
+
+    for (const num of numerics){
+        num.disabled = false;
+    }
+    p.style.cursor = "auto";
+    p.style.animation = "none";
+    p.innerHTML = "8888888888888888888888888888888888";
+    document.removeEventListener("click", clearScreen);
+}
 
 function clearScreen(){
-    p.innerHTML="";
-
+    p.innerHTML = "";
 }
 
-function restorescreen(){
-    p.innerHTML = "8888888888888888888888888888888888";
-}
-
-
-function num(x) {
-    
-    display.innerHTML += x.toString();
-    
-}
-
-function add(){
-    display.innerHTML += "+";
-}
-
-function minus(){
-    display.innerHTML += "-";
-}
-
-function multiply(){
-    display.innerHTML += "*";
-
-}
-
-function devide(){
-    display.innerHTML += "/";
-}
-
-function sin(){
-    display.innerHTML += "Sin";
-}
-
-function cos(){
-    display.innerHTML += "Cos";
-}
-
-function tan(){
-    p.innerHTML += "tan";
-
-}
-
-function log(){
-    p.innerHTML += "log";
-}
-
-function equal(){
-    const qstn = document.getElementById("resultscreen");
-    qstn.forEach(element => {
-        if (element == "+"){
-            const ans = sum(element);
-            
-        }
+functionkeys.forEach(section => {
+    const buttons = section.querySelectorAll("button");
+    buttons.forEach(button => {
+        button.addEventListener("click", function() {
+            const buttonText = button.textContent;
+            displayfunct(buttonText);
+        });
     });
-}
+});
+
+numerics.forEach(section => {
+    const buttons = section.querySelectorAll("button");
+    buttons.forEach(button => {
+        button.addEventListener("click", function() {
+            const buttonText = button.textContent;
+            num(buttonText);
+        });
+    });
+});
